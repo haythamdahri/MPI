@@ -1,0 +1,8 @@
+// Compile C file
+# mpicc -o <filename> <CFile.c>
+// Run output file
+# mpiexec -n <NUMBER-PROCESSES> ./<COMPILED-FILE>
+
+Example:
+# mpicc -o results.out main.C
+# mpiexec -n 4 ./results.out

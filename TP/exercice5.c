@@ -7,7 +7,7 @@ int main(int argc, char *argv[])
     int rank, size;
     int data_size = 100;
     float data[data_size], new_data[10];
-    int done = 0;
+    int done = 0, l;
     MPI_Init(&argc, &argv);
     MPI_Comm_size(MPI_COMM_WORLD, &size);
     MPI_Comm_rank(MPI_COMM_WORLD, &rank);
@@ -19,12 +19,13 @@ int main(int argc, char *argv[])
     }
     else
     {
-        for (int i = 1; i <= 100; i++)
+        l = data_size/size;
+        for (int i = 1; i <= data_size; i++)
         {
             data[i - 1] = i;
         }
     }
-    int nb = 10;
+    int nb=10;
     float recv_data[nb], somme = 0, moyenne  = 0;
     MPI_Scatter(&data, 10, MPI_FLOAT, &recv_data, 10, MPI_FLOAT, 0, MPI_COMM_WORLD);
     for( int i=0; i<nb; i++ ){
